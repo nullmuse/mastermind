@@ -21,6 +21,7 @@ int main(void) {
    char *guess = malloc(5);
    char *printstr = malloc(20);
    pthread_t ghost;
+   int autotimer = 10;
    int compres = 0;
    int counter = 0;
    int sn,tr;
@@ -34,7 +35,7 @@ int main(void) {
       free(mmkey);
                    }
 
-   pthread_create(&ghost,NULL,&autoghost,NULL);
+   pthread_create(&ghost,NULL,&autoghost,(void *) &autotimer);
    printf("MASTERMIND V1.3.3.7\n\nPress enter to begin\n\n");
    stdflush();
    player = 1;

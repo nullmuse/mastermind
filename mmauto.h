@@ -4,14 +4,20 @@
 
 int player = 0;
 
-void *autoghost(void *this) {
+void *autoghost(void *timer) {
    char *autostring = "Autoplay: Press enter to start playing";
    int seconds = 10; 
    int auto_compres;
    int auto_counter;
+   int *timerargs;
    char *auto_guess = malloc(5);
    char *auto_printstr = malloc(20);
    int auto_tr,auto_sn;
+
+   if(timer) {
+      timerargs = (int *) timer; 
+      seconds = *timerargs;
+             }
 
    for(; seconds > 0; --seconds) {
       sleep(1); 
@@ -19,7 +25,7 @@ void *autoghost(void *this) {
       if(player) {
          free(auto_guess); 
          free(auto_printstr);
-         return;
+         pthread_exit(0); 
                  }
                                  }
 
@@ -56,4 +62,5 @@ PLAYER:
 printf("\n\nPlayer detected: Ending Autoplay\n\n\n\n");
 free(auto_guess);
 free(auto_printstr);
+pthread_exit(0); 
                             }
