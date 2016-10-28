@@ -74,5 +74,31 @@ for(i=0;i < strlen(sekrit_s);++i) {
   return retnum; 
 }
 
+void master_strings(int results, char *string, int slen) { 
 
+char *tmpbuf = malloc(slen); 
+memset(tmpbuf,0,slen); 
+int red = results / 10; 
+int white = results % 10; 
+
+if(red) { 
+snprintf(tmpbuf,slen,"%i red",red); 
+strncat(string,tmpbuf,strlen(tmpbuf)); 
+memset(tmpbuf,0,slen); 
+}
+
+if(white) { 
+snprintf(tmpbuf,slen,"%i white",white);
+strncat(string,tmpbuf,strlen(tmpbuf));
+memset(tmpbuf,0,slen);
+} 
+
+if(!(red + white)) 
+strncpy(string,"No matches",slen);
+
+
+free(tmpbuf); 
+return; 
+
+} 
 

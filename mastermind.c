@@ -5,7 +5,8 @@
 
 int main(void) { 
 
-char *guess = malloc(5); 
+char *guess = malloc(5);
+char *printstr = malloc(20);  
 int a; 
 int sn; 
 fgets(guess,5,stdin);
@@ -21,7 +22,8 @@ printf("You entered %i\n",tr);
 printf("Also known as %s\n",transmute_int(tr)); 
 
 printf("sekrit_number = %i\n",sn); 
-printf("%i\n",master_compare(tr,sn));
+master_strings(master_compare(tr,sn),printstr,20); 
+puts(printstr); 
  
 free(guess);
 return 0;
