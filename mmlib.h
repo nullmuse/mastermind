@@ -1,6 +1,7 @@
 #include <time.h>
 #include <stdlib.h> 
 
+
 int transmute_char(char *subject) {
    int len = strlen(subject) - 1;
    int i,new = 0;
@@ -78,6 +79,7 @@ void master_strings(int results, char *string, int slen) {
 
 char *tmpbuf = malloc(slen); 
 memset(tmpbuf,0,slen); 
+memset(string,0,slen); 
 int red = results / 10; 
 int white = results % 10; 
 
