@@ -33,14 +33,13 @@ int sn,tr;
 printf("%p\n",&autoghost); 
 pthread_create(&ghost,NULL,&autoghost,NULL); 
 printf("MASTERMIND V1.3.3.7\n\nPress enter to begin\n\n");
+stdflush(); 
+player = 1; 
 sn = generate_number();  
-while(compres != 40) {
-   stdflush(); 
-   player = 1;   
+while(compres != 40) {  
    counter++;   
    memset(guess,0,5); 
    memset(printstr,0,20);
-   *guess = 0; 
    printf("\nsekrit_number = %i\n",sn);
    printf("Guess a four digit number: "); 
    fgets(guess,5,stdin); 
@@ -54,7 +53,7 @@ while(compres != 40) {
    compres = master_compare(tr,sn);  
    master_strings(compres,printstr,20); 
    puts(printstr); 
-    
+   stdflush(); 
 }
 printf("You win! It took you %i guesses.\n",counter); 
 free(guess);

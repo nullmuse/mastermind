@@ -55,20 +55,27 @@ char *sekrit_s = transmute_int(sekrit,5);
 char *comp;
 char *selection = malloc(2);
 selection[1] = '\0';  
-int i,tmp; 
+int i,tmp,k; 
+
+for(i=0;i < strlen(sekrit_s);++i) { 
+   if(guess_s[i] == sekrit_s[i]) { 
+      retnum += 10; 
+      guess_s[i] = 'a'; 
+      sekrit_s[i] = 'a';
+   } 
+}
 
 for(i=0;i < strlen(sekrit_s);++i) {
+   if(guess_s[i] != 'a') { 
    selection[0] = guess_s[i]; 
-   comp = strstr(sekrit_s,selection); 
+   comp = strstr(sekrit_s,selection);
    if(comp != 0) {
-      tmp = (comp - sekrit_s) - i;
-      if(tmp)
-         retnum += 1; 
-      else
-         retnum += 10;  
-      }
+      *comp = 'a';
+      retnum += 1; 
    comp = 0; 
    }
+   }
+  }
   free(selection); 
   free(sekrit_s); 
   free(guess_s); 
