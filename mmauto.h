@@ -44,9 +44,10 @@ while(1) {
    printf("You win! It took you %i guesses.\n",auto_counter);
 }   
 PLAYER:
+printf("\n\nPlayer detected: Ending Autoplay\n\n\n\n");
 free(auto_guess);
 free(auto_printstr);
 
-return; 
+
 
 }
