@@ -4,7 +4,7 @@
 #include <string.h> 
 #include "mmlib.h"
 #include "mmauto.h"
-
+#include "mmfile.h" 
 
 void stdflush(void) {  
 int count = 0; 
@@ -28,7 +28,15 @@ pthread_t ghost;
 int compres = 0;
 int counter = 0;
 int sn,tr;
+int filereturn;
 
+char *mmkey = malloc(5); 
+filereturn = mm_fileopen(mmkey,5); 
+printf("%i\n",filereturn); 
+if(!filereturn) { 
+printf("%s\n",mmkey); 
+free(mmkey); 
+}
 pthread_create(&ghost,NULL,&autoghost,NULL); 
 printf("MASTERMIND V1.3.3.7\n\nPress enter to begin\n\n");
 stdflush(); 
