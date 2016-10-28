@@ -1,6 +1,6 @@
 
 int mm_sekrit = 0;
-
+//.mm filehandling function.
 int mm_fileopen(char *number, int size) {
    int readret = 0;
    FILE *fp = NULL;

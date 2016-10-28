@@ -6,7 +6,7 @@
 #include "mmfile.h"
 #include "mmauto.h"
 
-
+//helper function for flushing stdin garbage and holding the enter screen
 void stdflush(void) {
    int count = 0;
    while(count != 0xa) {
@@ -34,7 +34,7 @@ int main(void) {
       mm_sekrit = transmute_char(mmkey);
       free(mmkey);
                    }
-
+   //kick off autoplay
    pthread_create(&ghost,NULL,&autoghost,(void *) &autotimer);
    printf("MASTERMIND V1.3.3.7\n\nPress enter to begin\n\n");
    stdflush();
@@ -49,20 +49,19 @@ int main(void) {
       counter++;
       memset(guess,0,5);
       memset(printstr,0,20);
-      printf("\nsekrit_number = %i\n",sn);
       printf("Guess a four digit number: "); 
       fgets(guess,5,stdin); 
       tr = transmute_char(guess);
 
       if(tr == 0) {
          printf("invalid input detected nerd\n"); 
-         printf("Press enter to continue\n"); 
+         printf("Press enter to continue\n"); //provide input to stdflush()
          continue;
                   }
 
       printf("\nYour guess is %i\n",tr); 
-      compres = master_compare(tr,sn);  
-      master_strings(compres,printstr,20); 
+      compres = master_compare(tr,sn);
+      master_strings(compres,printstr,20);
       puts(printstr); 
       stdflush(); 
                         }

@@ -3,7 +3,8 @@
 #include <pthread.h> 
 
 int player = 0;
-
+//Autoplay logic: if no player is detected at the enter screen, the game will start playing itself.
+//On user input, autoghost disengages and the player is given control 
 void *autoghost(void *timer) {
    char *autostring = "Autoplay: Press enter to start playing";
    int seconds = 10; 
@@ -13,7 +14,7 @@ void *autoghost(void *timer) {
    char *auto_guess = malloc(5);
    char *auto_printstr = malloc(20);
    int auto_tr,auto_sn;
-
+   //allow for mastermind main to modify sleep timer, else defaults to ten
    if(timer) {
       timerargs = (int *) timer; 
       seconds = *timerargs;
@@ -30,8 +31,9 @@ void *autoghost(void *timer) {
                                  }
 
    printf("No player detected. Beginning autoplay\n");
+   
    while(1) {
-      if(!mm_sekrit)
+      if(!mm_sekrit) //check if .mm file has been loaded and secret number fetched
          auto_sn = generate_number();
       else
          auto_sn = mm_sekrit;
@@ -42,7 +44,6 @@ void *autoghost(void *timer) {
          auto_counter++;
          memset(auto_guess,0,5);
          memset(auto_printstr,0,20);
-         printf("\nsekrit_number = %i\n",auto_sn);
          puts(autostring);
          printf("Guess a four digit number: ");
          sleep(1);
