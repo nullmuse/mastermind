@@ -41,3 +41,38 @@ int generate_number(void) {
 
 }
 
+
+
+
+
+
+int master_compare(int guess, int sekrit) { 
+
+if(!(guess - sekrit))
+return 40; 
+
+int retnum = 0; 
+char *guess_s = transmute_int(guess);
+char *sekrit_s = transmute_int(sekrit); 
+char *comp;
+char *selection = malloc(2);
+selection[1] = '\0';  
+int i,tmp; 
+
+for(i=0;i < strlen(sekrit_s);++i) {
+   selection[0] = guess_s[i]; 
+   comp = strstr(sekrit_s,selection); 
+   if(comp != 0) {
+      tmp = (comp - sekrit_s) - i;
+      if(tmp)
+         retnum += 1; 
+      else
+         retnum += 10;  
+      }
+   comp = 0; 
+   }
+  return retnum; 
+}
+
+
+
