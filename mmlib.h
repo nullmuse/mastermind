@@ -14,20 +14,17 @@ int transmute_char(char *subject) {
 }
 
 
-char *transmute_int(int subject) {
+char *transmute_int(int subject, int size) {
    int container = 0;
-   int count = 5;
+   int count = size - 1;
    int check = 0;
-   char *new = malloc(5);
-   memset(new,0,5);
+   char *new = malloc(size);
+   memset(new,0,size);
    while(subject) {
       container = subject % 10;
       subject /= 10;
       new[--count] = container + 0x30;
       check++;
-   }
-   if(count) {
-   memcpy(new,new + count,6 - count);
    }
    return new;
 }
@@ -35,7 +32,7 @@ char *transmute_int(int subject) {
 int generate_number(void) {
    srand(time(NULL)); 
    int sekrit_number = 0; 
-   while(!sekrit_number)
+   while(!(sekrit_number / 1000))
       sekrit_number = rand() % 9999; 
    return sekrit_number; 
 
@@ -52,8 +49,8 @@ if(!(guess - sekrit))
 return 40; 
 
 int retnum = 0; 
-char *guess_s = transmute_int(guess);
-char *sekrit_s = transmute_int(sekrit); 
+char *guess_s = transmute_int(guess,5);
+char *sekrit_s = transmute_int(sekrit,5); 
 char *comp;
 char *selection = malloc(2);
 selection[1] = '\0';  
@@ -71,6 +68,9 @@ for(i=0;i < strlen(sekrit_s);++i) {
       }
    comp = 0; 
    }
+  free(selection); 
+  free(sekrit_s); 
+  free(guess_s); 
   return retnum; 
 }
 
@@ -82,13 +82,13 @@ int red = results / 10;
 int white = results % 10; 
 
 if(red) { 
-snprintf(tmpbuf,slen,"%i red",red); 
+snprintf(tmpbuf,slen,"%i red ",red); 
 strncat(string,tmpbuf,strlen(tmpbuf)); 
 memset(tmpbuf,0,slen); 
 }
 
 if(white) { 
-snprintf(tmpbuf,slen,"%i white",white);
+snprintf(tmpbuf,slen,"%i white ",white);
 strncat(string,tmpbuf,strlen(tmpbuf));
 memset(tmpbuf,0,slen);
 } 
