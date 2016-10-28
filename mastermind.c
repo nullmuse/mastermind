@@ -3,9 +3,8 @@
 #include <stdio.h> 
 #include <string.h> 
 #include "mmlib.h"
+#include "mmfile.h"
 #include "mmauto.h"
-#include "mmfile.h" 
-
 void stdflush(void) {  
 int count = 0; 
 while(count != 0xa) {  
@@ -34,14 +33,17 @@ char *mmkey = malloc(5);
 filereturn = mm_fileopen(mmkey,5); 
 printf("%i\n",filereturn); 
 if(!filereturn) { 
-printf("%s\n",mmkey); 
+mm_sekrit = transmute_char(mmkey); 
 free(mmkey); 
 }
 pthread_create(&ghost,NULL,&autoghost,NULL); 
 printf("MASTERMIND V1.3.3.7\n\nPress enter to begin\n\n");
 stdflush(); 
 player = 1; 
-sn = generate_number();  
+if(!mm_sekrit)
+sn = generate_number();
+else
+sn = mm_sekrit;   
 sleep(1);
 while(compres != 40) {  
    counter++;   

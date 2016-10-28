@@ -1,7 +1,8 @@
 
+mm_sekrit = 0;
 
 
-int mm_fileopen(char *passwd, int size) { 
+int mm_fileopen(char *number, int size) { 
 int readret; 
 FILE *fp = NULL;   
 fp = fopen(".mm","r");
@@ -9,7 +10,7 @@ fp = fopen(".mm","r");
 if(fp == -1) {
 return -1; 
 }
-readret = fread((void *)passwd, size - 1, sizeof(char), fp);
+readret = fread((void *)number, size - 1, sizeof(char), fp);
 if(!readret) { 
 fclose(fp);  
 return -1; 

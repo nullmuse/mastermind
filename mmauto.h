@@ -22,7 +22,10 @@ char *auto_guess = malloc(5);
 char *auto_printstr = malloc(20);
 int auto_tr,auto_sn;
 while(1) {
+   if(!mm_sekrit)
    auto_sn = generate_number();
+   else
+   auto_sn = mm_sekrit; 
    auto_compres = 0;
    auto_counter = 0;
    while(auto_compres != 40) {
