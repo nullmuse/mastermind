@@ -52,8 +52,6 @@ int master_compare(int guess, int sekrit) {
    int i;
    char *selection = malloc(2);
    selection[1] = '\0';  
-   if(!(guess - sekrit))
-      return 40;
    for(i=0;i < len;++i) {
 
       if(guess_s[i] == sekrit_s[i]) {
@@ -75,7 +73,7 @@ int master_compare(int guess, int sekrit) {
             comp = 0;
                        }
                             }
-                                     }
+                        }
   free(selection);
   free(sekrit_s);
   free(guess_s);

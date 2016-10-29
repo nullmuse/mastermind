@@ -15,8 +15,12 @@ void *autoghost(void *this) {
 
    for(; seconds > 0; --seconds) {
       sleep(1); 
-      if(player)
+
+      if(player) {
+         free(auto_guess); 
+         free(auto_printstr);
          return;
+                 }
                                  }
 
    printf("No player detected. Beginning autoplay\n");

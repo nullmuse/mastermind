@@ -26,6 +26,7 @@ int main(void) {
    int sn,tr;
    int filereturn;
    char *mmkey = malloc(5);
+   memset(mmkey,0,5); 
    filereturn = mm_fileopen(mmkey,5);
 
    if(!filereturn) {
