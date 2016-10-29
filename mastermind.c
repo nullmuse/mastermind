@@ -43,8 +43,7 @@ int main(void) {
       sn = generate_number();
    else
       sn = mm_sekrit;
-   sleep(1);
-
+   pthread_join(ghost, NULL);
    while(compres != 40) {
       counter++;
       memset(guess,0,5);

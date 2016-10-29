@@ -1,4 +1,5 @@
-CPPFLAGS=-Wall -Wextra -Wstack-usage=1024 -pedantic -o mastermind
+CPPFLAGS=-Wall -Wextra -pedantic -std=c99 -o mastermind
+CFLAGS=-Wstack-usage=1024 
 LDFLAGS=-lpthread
 
 all:
